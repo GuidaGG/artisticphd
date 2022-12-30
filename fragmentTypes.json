@@ -1,0 +1,612 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "CandidatesPortfolioDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentCandidatesPortfolioEntry"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "Morph",
+        "possibleTypes": [
+          {
+            "name": "UsersPermissionsMe"
+          },
+          {
+            "name": "UsersPermissionsMeRole"
+          },
+          {
+            "name": "UsersPermissionsLoginPayload"
+          },
+          {
+            "name": "UserPermissionsPasswordPayload"
+          },
+          {
+            "name": "Candidates"
+          },
+          {
+            "name": "CandidatesConnection"
+          },
+          {
+            "name": "CandidatesAggregator"
+          },
+          {
+            "name": "CandidatesGroupBy"
+          },
+          {
+            "name": "CandidatesConnectionId"
+          },
+          {
+            "name": "CandidatesConnection_id"
+          },
+          {
+            "name": "CandidatesConnectionCreatedAt"
+          },
+          {
+            "name": "CandidatesConnectionUpdatedAt"
+          },
+          {
+            "name": "CandidatesConnectionName"
+          },
+          {
+            "name": "CandidatesConnectionSlug"
+          },
+          {
+            "name": "CandidatesConnectionBio"
+          },
+          {
+            "name": "CandidatesConnectionCv"
+          },
+          {
+            "name": "CandidatesConnectionStatus"
+          },
+          {
+            "name": "CandidatesConnectionPublished_at"
+          },
+          {
+            "name": "createCandidatePayload"
+          },
+          {
+            "name": "updateCandidatePayload"
+          },
+          {
+            "name": "deleteCandidatePayload"
+          },
+          {
+            "name": "Contact"
+          },
+          {
+            "name": "updateContactPayload"
+          },
+          {
+            "name": "deleteContactPayload"
+          },
+          {
+            "name": "Datenschutz"
+          },
+          {
+            "name": "updateDatenschutzPayload"
+          },
+          {
+            "name": "deleteDatenschutzPayload"
+          },
+          {
+            "name": "Feed"
+          },
+          {
+            "name": "FeedConnection"
+          },
+          {
+            "name": "FeedAggregator"
+          },
+          {
+            "name": "FeedGroupBy"
+          },
+          {
+            "name": "FeedConnectionId"
+          },
+          {
+            "name": "FeedConnection_id"
+          },
+          {
+            "name": "FeedConnectionCreatedAt"
+          },
+          {
+            "name": "FeedConnectionUpdatedAt"
+          },
+          {
+            "name": "FeedConnectionTitle"
+          },
+          {
+            "name": "FeedConnectionSlug"
+          },
+          {
+            "name": "FeedConnectionCandidate"
+          },
+          {
+            "name": "FeedConnectionPublished_at"
+          },
+          {
+            "name": "createFeedPayload"
+          },
+          {
+            "name": "updateFeedPayload"
+          },
+          {
+            "name": "deleteFeedPayload"
+          },
+          {
+            "name": "Home"
+          },
+          {
+            "name": "updateHomePayload"
+          },
+          {
+            "name": "deleteHomePayload"
+          },
+          {
+            "name": "Impressum"
+          },
+          {
+            "name": "updateImpressumPayload"
+          },
+          {
+            "name": "deleteImpressumPayload"
+          },
+          {
+            "name": "New"
+          },
+          {
+            "name": "NewConnection"
+          },
+          {
+            "name": "NewAggregator"
+          },
+          {
+            "name": "NewGroupBy"
+          },
+          {
+            "name": "NewConnectionId"
+          },
+          {
+            "name": "NewConnection_id"
+          },
+          {
+            "name": "NewConnectionCreatedAt"
+          },
+          {
+            "name": "NewConnectionUpdatedAt"
+          },
+          {
+            "name": "NewConnectionTitle"
+          },
+          {
+            "name": "NewConnectionSlug"
+          },
+          {
+            "name": "NewConnectionCategory"
+          },
+          {
+            "name": "NewConnectionDate"
+          },
+          {
+            "name": "NewConnectionSubtitle"
+          },
+          {
+            "name": "NewConnectionEndTime"
+          },
+          {
+            "name": "NewConnectionEndDate"
+          },
+          {
+            "name": "NewConnectionSeminarWeekDay"
+          },
+          {
+            "name": "NewConnectionPublished_at"
+          },
+          {
+            "name": "createNewPayload"
+          },
+          {
+            "name": "updateNewPayload"
+          },
+          {
+            "name": "deleteNewPayload"
+          },
+          {
+            "name": "Program"
+          },
+          {
+            "name": "ProgramConnection"
+          },
+          {
+            "name": "ProgramAggregator"
+          },
+          {
+            "name": "ProgramAggregatorSum"
+          },
+          {
+            "name": "ProgramAggregatorAvg"
+          },
+          {
+            "name": "ProgramAggregatorMin"
+          },
+          {
+            "name": "ProgramAggregatorMax"
+          },
+          {
+            "name": "ProgramGroupBy"
+          },
+          {
+            "name": "ProgramConnectionId"
+          },
+          {
+            "name": "ProgramConnection_id"
+          },
+          {
+            "name": "ProgramConnectionCreatedAt"
+          },
+          {
+            "name": "ProgramConnectionUpdatedAt"
+          },
+          {
+            "name": "ProgramConnectionPageTitle"
+          },
+          {
+            "name": "ProgramConnectionSlug"
+          },
+          {
+            "name": "ProgramConnectionPageTitleDe"
+          },
+          {
+            "name": "ProgramConnectionOrder"
+          },
+          {
+            "name": "ProgramConnectionPublished_at"
+          },
+          {
+            "name": "createProgramPayload"
+          },
+          {
+            "name": "updateProgramPayload"
+          },
+          {
+            "name": "deleteProgramPayload"
+          },
+          {
+            "name": "Proposal"
+          },
+          {
+            "name": "ProposalConnection"
+          },
+          {
+            "name": "ProposalAggregator"
+          },
+          {
+            "name": "ProposalGroupBy"
+          },
+          {
+            "name": "ProposalConnectionId"
+          },
+          {
+            "name": "ProposalConnection_id"
+          },
+          {
+            "name": "ProposalConnectionCreatedAt"
+          },
+          {
+            "name": "ProposalConnectionUpdatedAt"
+          },
+          {
+            "name": "ProposalConnectionTitle"
+          },
+          {
+            "name": "ProposalConnectionSlug"
+          },
+          {
+            "name": "ProposalConnectionSubTitle"
+          },
+          {
+            "name": "ProposalConnectionSideText"
+          },
+          {
+            "name": "ProposalConnectionCandidate"
+          },
+          {
+            "name": "ProposalConnectionPublished_at"
+          },
+          {
+            "name": "createProposalPayload"
+          },
+          {
+            "name": "updateProposalPayload"
+          },
+          {
+            "name": "deleteProposalPayload"
+          },
+          {
+            "name": "UploadFile"
+          },
+          {
+            "name": "UploadFileConnection"
+          },
+          {
+            "name": "UploadFileAggregator"
+          },
+          {
+            "name": "UploadFileAggregatorSum"
+          },
+          {
+            "name": "UploadFileAggregatorAvg"
+          },
+          {
+            "name": "UploadFileAggregatorMin"
+          },
+          {
+            "name": "UploadFileAggregatorMax"
+          },
+          {
+            "name": "UploadFileGroupBy"
+          },
+          {
+            "name": "UploadFileConnectionId"
+          },
+          {
+            "name": "UploadFileConnection_id"
+          },
+          {
+            "name": "UploadFileConnectionCreatedAt"
+          },
+          {
+            "name": "UploadFileConnectionUpdatedAt"
+          },
+          {
+            "name": "UploadFileConnectionName"
+          },
+          {
+            "name": "UploadFileConnectionAlternativeText"
+          },
+          {
+            "name": "UploadFileConnectionCaption"
+          },
+          {
+            "name": "UploadFileConnectionWidth"
+          },
+          {
+            "name": "UploadFileConnectionHeight"
+          },
+          {
+            "name": "UploadFileConnectionFormats"
+          },
+          {
+            "name": "UploadFileConnectionHash"
+          },
+          {
+            "name": "UploadFileConnectionExt"
+          },
+          {
+            "name": "UploadFileConnectionMime"
+          },
+          {
+            "name": "UploadFileConnectionSize"
+          },
+          {
+            "name": "UploadFileConnectionUrl"
+          },
+          {
+            "name": "UploadFileConnectionPreviewUrl"
+          },
+          {
+            "name": "UploadFileConnectionProvider"
+          },
+          {
+            "name": "UploadFileConnectionProvider_metadata"
+          },
+          {
+            "name": "UsersPermissionsPermission"
+          },
+          {
+            "name": "UsersPermissionsRole"
+          },
+          {
+            "name": "UsersPermissionsRoleConnection"
+          },
+          {
+            "name": "UsersPermissionsRoleAggregator"
+          },
+          {
+            "name": "UsersPermissionsRoleGroupBy"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionId"
+          },
+          {
+            "name": "UsersPermissionsRoleConnection_id"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionName"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionDescription"
+          },
+          {
+            "name": "UsersPermissionsRoleConnectionType"
+          },
+          {
+            "name": "createRolePayload"
+          },
+          {
+            "name": "updateRolePayload"
+          },
+          {
+            "name": "deleteRolePayload"
+          },
+          {
+            "name": "UsersPermissionsUser"
+          },
+          {
+            "name": "UsersPermissionsUserConnection"
+          },
+          {
+            "name": "UsersPermissionsUserAggregator"
+          },
+          {
+            "name": "UsersPermissionsUserGroupBy"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionId"
+          },
+          {
+            "name": "UsersPermissionsUserConnection_id"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionCreatedAt"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionUpdatedAt"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionUsername"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionEmail"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionProvider"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionConfirmed"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionBlocked"
+          },
+          {
+            "name": "UsersPermissionsUserConnectionRole"
+          },
+          {
+            "name": "createUserPayload"
+          },
+          {
+            "name": "updateUserPayload"
+          },
+          {
+            "name": "deleteUserPayload"
+          },
+          {
+            "name": "ComponentCandidatesPortfolioEntry"
+          },
+          {
+            "name": "ComponentLayoutsImageField"
+          },
+          {
+            "name": "ComponentLayoutsTextBlock"
+          },
+          {
+            "name": "ComponentProgramAbout"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ContactPageZoneEnDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ContactPageZoneDeDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "FeedPageZoneDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsImageField"
+          },
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "HomePageZoneEnDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "HomePageZoneDeDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "NewEventPageDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsImageField"
+          },
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ProgramPageEnDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsTextBlock"
+          },
+          {
+            "name": "ComponentProgramAbout"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ProgramPageDeDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsTextBlock"
+          },
+          {
+            "name": "ComponentProgramAbout"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ProposalPageZoneDynamicZone",
+        "possibleTypes": [
+          {
+            "name": "ComponentLayoutsImageField"
+          },
+          {
+            "name": "ComponentLayoutsTextBlock"
+          }
+        ]
+      }
+    ]
+  }
+}

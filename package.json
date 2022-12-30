@@ -1,0 +1,29 @@
+{
+  "name": "artisticphd-hfk",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "graphql-codegen"
+  },
+  "dependencies": {
+    "@nuxtjs/apollo": "^4.0.1-rc.3",
+    "apollo-cache-inmemory": "^1.6.6",
+    "core-js": "^3.6.5",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
+    "nuxt": "^2.14.6",
+    "nuxt-password-protect": "^1.1.0",
+    "v-video-embed": "^1.0.8",
+    "vue-scrollto": "^2.18.2",
+    "vue-vimeo-player": "^0.1.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.17.10",
+    "@graphql-codegen/fragment-matcher": "^1.17.8",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.3"
+  }
+}
