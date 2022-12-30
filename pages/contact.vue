@@ -52,15 +52,14 @@
         </div>
       </div>
  
-      <div v-if="cvDeVisible && pages.pageZoneDe.length" id="cv-de" class="en block right richtext" v-on:click="scroll"></div>
+      <div v-if="cvDeVisible && pages.pageZoneDe" id="cv-de" class="en block right richtext" v-on:click="scroll"></div>
       <div class="block half-block image"> 
         <div class="layer"></div>
         <BackgroundProgram />
       </div>
-        <div ref="dots" v-on:click="scrolldots" class="dot-navigation">
-          <div class="dot" v-for="(p, index) in getListPages" :key="index" :class="{'current': index === 0}"></div>
-        </div>
-
+      <div ref="dots" v-on:click="scrolldots" class="dot-navigation">
+        <div class="dot" v-for="(p, index) in getListPages" :key="index" :class="{'current': index === 0}"></div>
+       </div>
     </div>
   </with-footer>
 </template>
