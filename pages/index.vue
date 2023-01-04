@@ -4,7 +4,7 @@
 
         <div id="pageContent" v-on:scroll="progressBar" ref="scroll" class="pageContent home">
           <div class="block half-block image"> <Background /></div>
-          <div v-for="(contents, index) in pages.pageZoneEn" :key="contents.id" v-on:click="scroll" :class="{'en':true, 'block':true, 'last': index==1, 'middle': index === 0, 'right': index === 1  }">
+          <div v-for="(contents, index) in pages.pageZoneEn" :key="contents.id" v-on:click="scroll" :class="{'en':true, 'block':true, 'last': index===1, 'middle': index === 0, 'right': index === 1  }">
               <div class="layer"></div>
               <div  class="richtext" v-if="contents.__typename === 'ComponentLayoutsTextBlock'">
                 <Richtext :zone="contents.richText" />
@@ -170,7 +170,6 @@ export default {
       }
     },
     scrolldots: function(event){
-      var VueScrollTo = require('vue-scrollto');
 
       var navparent = this.$refs.dots
       var current = event.target
@@ -180,11 +179,6 @@ export default {
       if(elements[index]){
         elements[index].click()
       }
-
-
-
-
-
     },
    changedots: function(active, parent){
       var index = Array.prototype.indexOf.call(parent.children, active) -1

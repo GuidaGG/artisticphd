@@ -47,47 +47,62 @@
                 this.$store.commit('CHANGE_NAV_TITLES', menus)
                 this.$root.$emit('Footer_De') //like this
             },
+            changedots: function(active, parent){
+               
+            var index = Array.prototype.indexOf.call(parent.children, active) -1
+                
+            let dotNavigation = document.getElementById("dots")
+
+            if(dotNavigation){
+                let dots = dotNavigation.children;
+
+                let currentdot = dotNavigation.getElementsByClassName("current")
+                if(currentdot.length) {
+                    currentdot[0].classList.remove("current")
+                }
+           
+                dots[index].classList.add("current")
+
+                }
+            },
             progressBar: function(event) {
                 let element = event.srcElement
                 let width = element.scrollWidth - element.offsetWidth
                 let current = element.scrollLeft
                 let percent = current * 100 / width
 
-                this.progressbar.style.background = "linear-gradient(90deg, rgba(255,255,255,1) "+(percent-50)+"%, rgba(185,152,255,1) "+percent+"%, rgba(255,255,255,1) "+(percent+50)+"%)"
+                this.progressbar.style.background = `linear-gradient(90deg, rgba(255,255,255,1) ${percent-50}%, rgba(185,152,255,1) ${percent}%, rgba(255,255,255,1) ${percent+50}%)`
 
-                var beginDe = document.getElementsByClassName("first")[0]
-                var beginEn = document.getElementsByClassName("last")[0]
+                let beginDe = document.getElementsByClassName("first")[0]
+                let beginEn = document.getElementsByClassName("last")[0]
+
                 if(beginDe){
                     if(beginDe.getBoundingClientRect().left <= beginDe.offsetWidth/1.5){
                         this.changelangde()
                     }
                 }
-
                 if(beginEn){
-
                     if(beginEn.getBoundingClientRect().left <= beginEn.offsetWidth/1.8 && beginDe.getBoundingClientRect().left >= beginDe.offsetWidth/1.5 ){
-
                         this.changelangen()
-
                     }
                 }
                 if( this.scrollElement){
-                    var elements =  this.scrollElement.children
-                    var space = 0
-                    var extra = 1
-                    var start = 0
+                    let elements =  this.scrollElement.children
+                    let space = 0
+                    let extra = 1
+                    let start = 0
                     if(this.isMobile()){
                         space = 20
                         extra = 0
                         start = 1
                     }
 
-                   /* for(var i = start; i <elements.length-1; i++){
+                   for(var i = start; i <elements.length-1; i++){
                     var first = elements[i].getBoundingClientRect().left
 
                     if(i<elements.length-2){
                         var second = elements[i+1].getBoundingClientRect().left
-
+                
                         if(first<=0 && second >space){
 
                         this.changedots(elements[i+extra], this.scrollElement )
@@ -100,11 +115,11 @@
                         var previous = elements[i-1].getBoundingClientRect().left
                         if(first>=0 && previous <0 ){
 
-                        this.changedots(elements[i],this.$refs.scroll )
+                        this.changedots(elements[i], this.scrollElement  )
                         }
 
                     }
-                    }*/
+                    }
                 }
 
                 },
