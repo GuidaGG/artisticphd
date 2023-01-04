@@ -26,7 +26,7 @@
         </div>
       </div>
       <div v-if="cvEnVisible" id="cv-en" class="en block right richtext" v-on:click="scroll"></div>
-      <div v-if="pages.pageZoneDe.length" class="en block image" v-on:click="scroll "> 
+      <div v-if="pages.pageZoneDe" class="en block image" v-on:click="scroll "> 
          <div class="layer"></div>
          <BackgroundProgram />
       </div>

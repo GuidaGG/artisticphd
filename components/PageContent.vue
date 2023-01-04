@@ -1,0 +1,113 @@
+<template>
+    <div id="pageContent" v-on:scroll="progressBar" ref="scroll" class="pageContent home">
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+    export default {
+
+        data() {
+            return {
+                scrollElement: {},
+                progressbar: {}
+            }
+        },
+        mounted() {
+
+        this.progressbar = document.getElementById("progressbar")
+        progressbar.style.background = "linear-gradient(90deg, rgba(255,255,255,1) -50%, rgba(185,152,255,1) 0%, rgba(255,255,255,1) 50%)"
+        
+        this.scrollElement = this.$refs.scroll
+        this.$emit("scroll-element", this.scrollElement);
+
+        },
+        methods: {
+            isMobile() {
+                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.innerWidth<769) {
+                    return true
+                } else {
+                    return false
+                }
+            },
+            changelangen: function(){
+                document.getElementsByClassName("lang")[0].classList.add('link_active')
+                document.getElementsByClassName("lang")[1].classList.remove('link_active')
+                var menus = ['program', 'candidates', 'Events', 'Seminars', 'Contact']
+                // this.$store.commit('CHANGE_NAV_LAYOUT','en')
+                this.$store.commit('CHANGE_NAV_TITLES', menus)
+                this.$root.$emit('Footer_En') //like this
+                },
+            changelangde: function(){
+
+                document.getElementsByClassName("lang")[1].classList.add('link_active')
+                document.getElementsByClassName("lang")[0].classList.remove('link_active')
+                var menus = ['Programm', 'Kandidatinnen', 'Veranstaltungen', 'Seminare', 'Kontakt']
+                // this.$store.commit('CHANGE_NAV_LAYOUT','de')
+                this.$store.commit('CHANGE_NAV_TITLES', menus)
+                this.$root.$emit('Footer_De') //like this
+            },
+            progressBar: function(event) {
+                let element = event.srcElement
+                let width = element.scrollWidth - element.offsetWidth
+                let current = element.scrollLeft
+                let percent = current * 100 / width
+
+                this.progressbar.style.background = "linear-gradient(90deg, rgba(255,255,255,1) "+(percent-50)+"%, rgba(185,152,255,1) "+percent+"%, rgba(255,255,255,1) "+(percent+50)+"%)"
+
+                var beginDe = document.getElementsByClassName("first")[0]
+                var beginEn = document.getElementsByClassName("last")[0]
+                if(beginDe){
+                    if(beginDe.getBoundingClientRect().left <= beginDe.offsetWidth/1.5){
+                        this.changelangde()
+                    }
+                }
+
+                if(beginEn){
+
+                    if(beginEn.getBoundingClientRect().left <= beginEn.offsetWidth/1.8 && beginDe.getBoundingClientRect().left >= beginDe.offsetWidth/1.5 ){
+
+                        this.changelangen()
+
+                    }
+                }
+                if( this.scrollElement){
+                    var elements =  this.scrollElement.children
+                    var space = 0
+                    var extra = 1
+                    var start = 0
+                    if(this.isMobile()){
+                        space = 20
+                        extra = 0
+                        start = 1
+                    }
+
+                   /* for(var i = start; i <elements.length-1; i++){
+                    var first = elements[i].getBoundingClientRect().left
+
+                    if(i<elements.length-2){
+                        var second = elements[i+1].getBoundingClientRect().left
+
+                        if(first<=0 && second >space){
+
+                        this.changedots(elements[i+extra], this.scrollElement )
+                        }
+
+                    }
+                    else{
+
+                        var first = elements[i].getBoundingClientRect().left
+                        var previous = elements[i-1].getBoundingClientRect().left
+                        if(first>=0 && previous <0 ){
+
+                        this.changedots(elements[i],this.$refs.scroll )
+                        }
+
+                    }
+                    }*/
+                }
+
+                },
+            }
+            }
+</script>
