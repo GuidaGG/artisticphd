@@ -2,7 +2,7 @@
     <with-footer class="home">
       <client-only>
 
-        <PageContent @scroll-element="lalala">
+        <PageContent @scroll-element="defineParent">
           
           <Block class="half-block image" :scrollElement="parent"> <Background /></Block>
           <Block v-for="(contents, index) in pages.pageZoneEn" :key="contents.id" :class="{'en':true, 'block':true, 'last': index==1, 'middle': index === 0, 'right': index === 1  }" :scrollElement="parent">
@@ -20,9 +20,9 @@
                  <Richtext :zone="contents.richText" />
               </div>
             </Block>
-          <Block class="block half-block image" :scrollElement="parent"> <Background /></Block>
+          <Block class="block half-block image" :scrollElement="parent"  last="true"> <Background /></Block>
         </PageContent>    
-        <Dots :totalPages="numPages" :scrollElement="parent"/>{{getListPages}}
+        <Dots :totalPages="getListPages" :scrollElement="parent"/>
         
     </client-only>
   </with-footer>
@@ -34,7 +34,7 @@ import Richtext from '~/components/Richtext.vue';
 import Background from '~/components/Background.vue';
 import { HomeQuery } from "~/graphql/queries/content"
 import WithFooter from '~/layouts/WithFooter.vue';
-import Block from '../components/Block.vue';
+import Block  from '@/components/Block';
 import PageContent from '~/components/PageContent.vue';
 import Dots from '~/components/Dots.vue';
 
@@ -59,7 +59,7 @@ export default {
       currentScroll : 0,
       timer: 0,
       clickable: true,
-      numPages: [],
+      numPages: 0,
       parent: ""
     };
   },
@@ -74,14 +74,14 @@ export default {
     getListPages: function(){
       if(this.pages.pageZoneEn){
         var engPages =  Object.keys(this.pages.pageZoneEn).length
-        var dePages = Object.keys(this.pages.pageZoneEn).length
+        var dePages = Object.keys(this.pages.pageZoneDe).length
         this.numPages = engPages + dePages + 1
       }
        return this.numPages
     }
   },
   methods: {
-    lalala: function(params) {
+    defineParent: function(params) {
      
       this.parent = params
       

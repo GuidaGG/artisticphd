@@ -22,7 +22,7 @@
           <div class="block half-block image"> <Background /></div>
         </div>
         <div ref="dots" v-on:click="scrolldots" class="dot-navigation">
-          <div class="dot" v-for="(p, index) in getListPages" :key="index" :class="{'current': index === 0}"></div>
+          <div class="dot" v-for="(p, index) in getListPages" :key="index" :class="{'current': index === 0}">{{ index }}</div>
         </div>
 
 

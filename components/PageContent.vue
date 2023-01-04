@@ -49,7 +49,7 @@
             },
             changedots: function(active, parent){
                
-            var index = Array.prototype.indexOf.call(parent.children, active) -1
+            var index = Array.prototype.indexOf.call(parent.children, active) - 1
                 
             let dotNavigation = document.getElementById("dots")
 
@@ -76,49 +76,24 @@
                 let beginDe = document.getElementsByClassName("first")[0]
                 let beginEn = document.getElementsByClassName("last")[0]
 
-                if(beginDe){
+                if(beginDe && beginEn){
                     if(beginDe.getBoundingClientRect().left <= beginDe.offsetWidth/1.5){
                         this.changelangde()
                     }
-                }
-                if(beginEn){
                     if(beginEn.getBoundingClientRect().left <= beginEn.offsetWidth/1.8 && beginDe.getBoundingClientRect().left >= beginDe.offsetWidth/1.5 ){
                         this.changelangen()
                     }
                 }
+                else{
+                    this.changelangen()
+                }
                 if( this.scrollElement){
                     let elements =  this.scrollElement.children
-                    let space = 0
-                    let extra = 1
-                    let start = 0
-                    if(this.isMobile()){
-                        space = 20
-                        extra = 0
-                        start = 1
-                    }
-
-                   for(var i = start; i <elements.length-1; i++){
-                    var first = elements[i].getBoundingClientRect().left
-
-                    if(i<elements.length-2){
-                        var second = elements[i+1].getBoundingClientRect().left
-                
-                        if(first<=0 && second >space){
-
-                        this.changedots(elements[i+extra], this.scrollElement )
+                   for(var i = 1; i <elements.length-2; i++){
+                        if(elements[i].getBoundingClientRect().left > 0 && elements[i].getBoundingClientRect().left < window.innerWidth/2){  
+                            this.changedots(elements[i], this.scrollElement )
                         }
-
-                    }
-                    else{
-
-                        var first = elements[i].getBoundingClientRect().left
-                        var previous = elements[i-1].getBoundingClientRect().left
-                        if(first>=0 && previous <0 ){
-
-                        this.changedots(elements[i], this.scrollElement  )
-                        }
-
-                    }
+                      
                     }
                 }
 
