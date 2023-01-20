@@ -1,5 +1,5 @@
 <template>
-    <div id="pageContent" v-on:scroll="progressBar" ref="scroll" class="pageContent home">
+    <div id="pageContent" v-on:scroll="progressBar" ref="scroll" class="pageContent">
         <slot></slot>
     </div>
 </template>
@@ -35,6 +35,7 @@
                 document.getElementsByClassName("lang")[1].classList.remove('link_active')
                 var menus = ['program', 'candidates', 'Events', 'Seminars', 'Contact']
                 // this.$store.commit('CHANGE_NAV_LAYOUT','en')
+                this.$store.commit('CHANGE_EN_TITLES')
                 this.$store.commit('CHANGE_NAV_TITLES', menus)
                 this.$root.$emit('Footer_En') //like this
                 },
@@ -44,6 +45,7 @@
                 document.getElementsByClassName("lang")[0].classList.remove('link_active')
                 var menus = ['Programm', 'Kandidatinnen', 'Veranstaltungen', 'Seminare', 'Kontakt']
                 // this.$store.commit('CHANGE_NAV_LAYOUT','de')
+                this.$store.commit('CHANGE_DE_TITLES')
                 this.$store.commit('CHANGE_NAV_TITLES', menus)
                 this.$root.$emit('Footer_De') //like this
             },
@@ -89,7 +91,7 @@
                 }
                 if( this.scrollElement){
                     let elements =  this.scrollElement.children
-                   for(var i = 1; i <elements.length-2; i++){
+                   for(var i = 1; i <elements.length-1; i++){
                         if(elements[i].getBoundingClientRect().left > 0 && elements[i].getBoundingClientRect().left < window.innerWidth/2){  
                             this.changedots(elements[i], this.scrollElement )
                         }

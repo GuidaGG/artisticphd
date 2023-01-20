@@ -42,14 +42,20 @@ export default {
             
             })
             this.$root.$on('Footer_En', () => {
-            
+                    
                     let element = this.$refs.langen
+
                     if(element){
+                  
                     this.moveLine(this.$refs.langen)     
                     }
                     
                 
             
+            })
+            this.$root.$on("defaultLanguage", () => {
+                let element = this.$refs.langen
+                element.click()
             })
         })
 

@@ -28,7 +28,13 @@
               <li>Language:</li>
               <li>{{ zone.language }}</li>
             </ul>
-          </div>  
+          </div>
+          <div class="block-content" v-if="zone.__typename === 'ComponentLayoutsCollpasiblePanel'">
+            <div class="layer"></div>
+            <div v-for="collapsible in zone.Collapsibles" :key="collapsible.id">
+              <Collapsible :collapsible="collapsible" />
+            </div>
+          </div>    
 
         </Block>
 
@@ -54,6 +60,12 @@
               <li>{{ zone.language }}</li>
             </ul>
           </div>
+          <div class="block-content" v-if="zone.__typename === 'ComponentLayoutsCollpasiblePanel'">
+            <div class="layer"></div>
+            <div v-for="collapsible in zone.Collapsibles" :key="collapsible.id">
+              <Collapsible :collapsible="collapsible" />
+            </div>
+          </div>   
         </Block>
 
         <Block class="last-block image" :scrollElement="parent" last="true">
@@ -75,6 +87,7 @@ import PageContent from "@/components/PageContent"
 import Richtext from "@/components/Richtext"
 import BackgroundProgram from '@/components/BackgroundProgram';
 import Block from '@/components/Block';
+import Collapsible from '@/components/Collapsible';
 import { pagesQuery, pageQuery } from "~/graphql/queries/content"
 import WithFooter from '@/layouts/WithFooter';
 import Dots from '@/components/Dots';
@@ -88,7 +101,8 @@ export default {
     Block,
     BackgroundProgram,
     Richtext,
-    Dots
+    Dots,
+    Collapsible
   },
   data() {
     return {
@@ -125,6 +139,32 @@ export default {
         return { slug: this.$route.params.slug}
       }
     }
+  },
+  updated: function() {
+  
+      var progressbar = document.getElementById("progressbar")
+      progressbar.style.background =  "linear-gradient(90deg, rgba(255,255,255,1) -50%, rgba(185,152,255,1) 0%, rgba(255,255,255,1) 50%)"
+
+      this.$nextTick(function () {
+
+        this.$store.state.layout = "en"
+      
+        this.$root.$emit('Sidebar') 
+        let scrollContainer = this.parent
+       
+        if(scrollContainer){
+         
+          scrollContainer.style.scrollSnapType = "none"
+          scrollContainer.scrollLeft = 0
+
+            setTimeout(function(){
+              scrollContainer.style.scrollSnapType = "x mandatory"
+            }, 600)
+        }
+      
+          this.$root.$emit('Footer_En') 
+          this.$store.commit('CHANGE_EN_TITLES')
+      })
   },
 }
 </script>

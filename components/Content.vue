@@ -9,6 +9,7 @@
         </div>
         <div v-for="(zone, index) in contents.pageEn" :key="zone.id" v-on:click="scroll" :class="{'en':true, 'block':true, 'last':  index === (contents.pageEn.length-1), 'middle': index === 0, 'right': index === 1  }">
           <div class="block-content" v-if="zone.__typename === 'ComponentLayoutsTextBlock'">
+            {{ zone.__typename }}
             <div class="layer"></div>
             <Richtext :zone="zone.richText" />
           </div>
@@ -22,6 +23,10 @@
               <li>Language:</li>
               <li>{{ zone.language }}</li>
             </ul>
+          </div>
+          <div class="block-content" v-if="zone.__typename === 'ComponentLayoutsCollpasiblePanel'">
+            <div class="layer"></div>
+            <div>asdasddadasddas</div>
           </div>
         </div>
 

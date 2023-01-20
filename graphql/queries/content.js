@@ -48,6 +48,14 @@ query Programs ($slug: String!) {
       ... on ComponentLayoutsTextBlock {
         richText
       }
+      ... on ComponentLayoutsCollpasiblePanel{
+        Collapsibles {
+          title
+          content
+          website
+          email
+        }
+      }
 
     }
     pageDe {
@@ -58,6 +66,14 @@ query Programs ($slug: String!) {
         academicTitle
         duration
         language
+      }
+      ... on ComponentLayoutsCollpasiblePanel{
+        Collapsibles {
+          title
+          content
+          website
+          email
+        }
       }
 
     }

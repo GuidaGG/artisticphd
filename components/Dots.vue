@@ -1,6 +1,6 @@
 <template>
-    <div ref="dots" id="dots" v-on:click="scrolldots" class="dot-navigation">
-        <div class="dot" v-for="index in totalPages" :key="index" :class="{'current': index === 0}"></div>
+    <div ref="dots" id="dots"  class="dot-navigation">
+        <div class="dot" v-on:click="scrolldots" v-for="(d, index) in totalPages" :key="index" :class="{'current': index === 0}"></div>
     </div>
    
 </template>
@@ -17,11 +17,13 @@ export default {
     methods: {
         scrolldots: function(event){
             var navparent = this.$refs.dots
+
             var current = event.target
             var index = Array.prototype.indexOf.call(navparent.children, current) + 1
 
             var elements = this.$props.scrollElement.children;
                 if(elements[index]){
+                    console.log(elements[index])
                     elements[index].click()
                 }
             },

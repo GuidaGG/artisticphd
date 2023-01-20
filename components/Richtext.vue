@@ -1,9 +1,7 @@
 
 <template>
     <client-only>
-
-        <div ref="texte" class="richText" v-html="zone">
-        </div>
+        <div ref="texte" class="richText" v-html="zone"></div>
     </client-only>
 
 </template>
