@@ -59,9 +59,6 @@
 
 <script>
 
-
-import moment from 'moment'
-import Content from "@/components/Content"
 import { EventQuery } from "~/graphql/queries/content"
 import Richtext from '~/components/Richtext.vue';
 import Gallery from '~/components/Gallery.vue';
@@ -73,7 +70,6 @@ export default {
 
   components: {
     Richtext,
-    Content,
     Gallery,
     Vimeo,
     Youtube,

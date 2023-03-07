@@ -13,7 +13,7 @@
                   <span v-if="index === 1">For further information and questions, please contact:</span>
                   <ul>
                      <li class="contact-name">
-                      <span v-if="contact.cv" class="link" v-on:click="showCV($event, contact.cv, 'en')">{{contact.name}}</span>
+                      <ContactPerson v-if="contact.cv" :collapsible="contact" />
                       <span v-else>{{contact.name}}</span> 
                     </li>
                     <li>{{contact.role}}</li>
@@ -25,35 +25,33 @@
             </div>
         </div>
       </div>
-      <div v-if="cvEnVisible" id="cv-en" class="en block right richtext" v-on:click="scroll"></div>
-      <div v-if="pages.pageZoneDe.length" class="en block image" v-on:click="scroll "> 
+      <div v-if="pagesDe" class="en block image"  v-on:click="scroll "> 
          <div class="layer"></div>
          <BackgroundProgram />
       </div>
-      <div v-on:click="scroll" class="de block first" v-if="pages.pageZoneDe.length" >
+      <div v-on:click="scroll" class="de block first" v-if="pagesDe" >
         <div v-for="(contents) in pages.pageZoneDe" :key="contents.id">
           <div class="richtext" v-if="contents.__typename === 'ComponentLayoutsTextBlock'">
               <Richtext :zone="contents.richText" />
             </div>
               <div class="richtext" v-if="contents.__typename === 'ComponentContactContacts'">
                 <div v-for="contact in contents.People" :key="contact.id">
-                  <ul>
-                    <li class="contact-name">
-                      <span v-if="contact.cv" class="link" v-on:click="showCV($event, contact.cv, 'de')">{{contact.name}}</span>
+                <ul>
+                  <li class="contact-name">
+                      <ContactPerson v-if="contact.cv" :collapsible="contact" />
                       <span v-else>{{contact.name}}</span> 
                     </li>
                     <li>{{contact.role}}</li>
                     <li>{{contact.description}}</li>
                     <li>Email: <a :href="`mailto:${contact.email}`">{{contact.email}}</a></li>
                     <li>{{contact.phone}}</li>
-                    </ul>
+                  </ul>
+
               </div>
             </div>
         </div>
       </div>
- 
-      <div v-if="cvDeVisible && pages.pageZoneDe" id="cv-de" class="en block right richtext" v-on:click="scroll"></div>
-      <div class="block half-block image"> 
+      <div class="image block half-block last-block"> 
         <div class="layer"></div>
         <BackgroundProgram />
       </div>
@@ -69,11 +67,13 @@ import Richtext from '~/components/Richtext.vue';
 import { ContactQuery } from "~/graphql/queries/content"
 import WithFooter from '~/layouts/WithFooter.vue';
 import BackgroundProgram from '~/components/BackgroundProgram.vue';
+import ContactPerson from '~/components/ContactPerson.vue';
 export default {
   components: {
     WithFooter,
     Richtext,
-    BackgroundProgram
+    BackgroundProgram,
+    ContactPerson
   },
   data() {
     return {
@@ -82,7 +82,8 @@ export default {
       numPages: [],
       totalPages: 1,
       cvEnVisible: false,
-      cvDeVisible: false
+      cvDeVisible: false,
+      pagesDe: false
     };
   },
   head() {
@@ -109,8 +110,11 @@ export default {
   
     this.$nextTick(function () {
       this.$root.$emit('Header') //like this
-       if(this.pages.pageZoneDe.length){
-          this.totalPages = 3
+       if(this.pages.pageZoneDe){
+          if(this.pages.pageZoneDe.length){
+            this.totalPages = 3
+            this.pagesDe = true
+          }
         }
     });
   },
@@ -121,28 +125,6 @@ export default {
       } else {
         return false
       }
-    },
-    showCV: function (e, cv, lang ){
-      if(lang === "en"){
-        if(!this.cvEnVisible){
-              this.totalPages += 1
-              this.cvEnVisible = true
-          }
-
-      }
-      else{
-         if(!this.cvDeVisible){
-              this.totalPages += 1
-              this.cvDeVisible = true
-          }
-      }
-      
-      e.stopPropagation()  
-      this.$nextTick(function () {
-        const cvContainer = document.getElementById(`cv-${lang}`)
-        cvContainer.innerHTML = cv
-      });
-    
     },
     scrolldots: function(event){
   
@@ -159,7 +141,7 @@ export default {
           var index = Array.prototype.indexOf.call(parent.children, active) 
   
       if(this.$refs.dots){
-
+        console.log(this.$refs.dots)
         var dots = this.$refs.dots.children;
         var currentdot = this.$refs.dots.getElementsByClassName("current")
         if(currentdot.length>0){
@@ -288,6 +270,9 @@ export default {
   .block:first-child
     margin-left: 25%
 
+  .block a 
+    &:hover
+    border-bottom: 2px solid #B998FF
   ul 
     list-style: none
     padding: 20px 0
@@ -314,7 +299,6 @@ export default {
       height: 100%
       width: 100%
       background: transparent
-
 
 .dot-navigation
   width:

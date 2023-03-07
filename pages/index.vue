@@ -158,7 +158,11 @@ export default {
   width: 0 !important
   height: 0 !important
 
+.last-block 
+  width: 25% 
 
+.last-block.image svg
+  width: 200%
 
 .home .block
   font-size: 26px

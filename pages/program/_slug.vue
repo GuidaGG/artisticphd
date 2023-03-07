@@ -81,8 +81,6 @@
 
 <script>
 
-
-import Content from "@/components/Content"
 import PageContent from "@/components/PageContent"
 import Richtext from "@/components/Richtext"
 import BackgroundProgram from '@/components/BackgroundProgram';
@@ -96,7 +94,6 @@ export default {
 
   components: {
     WithFooter,
-    Content,
     PageContent,
     Block,
     BackgroundProgram,

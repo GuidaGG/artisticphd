@@ -113,7 +113,9 @@ export default {
       if(this.pages.length>0){
          this.pages.forEach((element) => {
 
-           let semester =  element.semester.semesterTitle
+          if(!element.semester) return
+           let semester =  element.semester?.semesterTitle
+          
             if(!semesters.includes(semester)){
               semesters.push(semester)
               object= {break : semester, special: "break"}
