@@ -54,6 +54,7 @@ query Programs ($slug: String!) {
           content
           website
           email
+          sectionTitle
         }
       }
 

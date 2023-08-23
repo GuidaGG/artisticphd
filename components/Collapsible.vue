@@ -1,6 +1,7 @@
 
 <template>
 <div>
+    <h3 class="collapsible-section-title" v-if="collapsible.sectionTitle">{{collapsible.sectionTitle}}</h3>
      <details>
               <summary>
                 <span>{{collapsible.title}}</span>
@@ -23,9 +24,9 @@ export default {
 </script>
 
 <style lang="sass">
-details 
-    padding-bottom: 5px
-    
+.collapsible-section-title
+  padding-bottom: 20px
+  
 summary  
     font-family: GT-Sectra-Regular
     text-transform: uppercase
@@ -33,6 +34,7 @@ summary
     font-size: 32px
     cursor: pointer
     padding: 8px 0
+    padding-top: 8px
     text-decoration: none
 
 summary span:hover
