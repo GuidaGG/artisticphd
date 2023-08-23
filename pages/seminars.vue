@@ -4,7 +4,7 @@
 
       <Arquive v-if="semester[0]" type="seminars" side="left" name="ongoing" :pages="orderedEvents" />
         <nuxt-child/> 
-      <Arquive type="seminars" side="right" name="archive" :pages="orderedArchiveEvents" /> 
+      <Arquive type="seminars" side="right" name="archive" :pages="orderedArchiveByYear" /> 
     </div>
   </no-footer>
 </template>
@@ -118,21 +118,36 @@ export default {
     
               oP.push(object) 
               
-          /*if(element.semester.== "LectureSeries" || element.series == null){
-            oP.push(element) 
-            let seriesTitle = element.slug
-             this.currentseminars.forEach((elementChild) => {
-               if(elementChild.series && elementChild.series.slug == seriesTitle){
-                 oP.push(elementChild) 
-               }
-             })     */
           }
              oP.push(element)  
       } )
        return oP
       }
      
+    },
+    orderedArchiveByYear: function(){
+      let oP = []
+      let years = []
+      let object
+      if(this.pages.length>0){
+         this.pages.forEach((element) => {
+
+          if(!element. date) return
+            let date = new Date(element.date);
+            let year =  date.getFullYear();
+            if(!years.includes(year)){
+              years.push(year)
+              object= {break : year, special: "break"}
+
+              oP.push(object)
+
+          }
+             oP.push(element)
+      } )
+       return oP
+      }
     }
+
    
   }
 

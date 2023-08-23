@@ -3,7 +3,7 @@
     <div ref="news" class="news">
       <ArquiveUpcoming v-if="semester[0]" type="events" side="left" name="upcoming" :pages="orderedEvents" />
         <nuxt-child/>
-      <Arquive side="right" type="events" name="archive" :pages="orderedArchiveEvents" />
+      <Arquive side="right" type="events" name="archive" :pages="orderedArchiveByYear" />
     </div>
   </no-footer>
 </template>
@@ -18,7 +18,7 @@ export default {
   components: {
     NoFooter,
     Arquive,
-
+    ArquiveUpcoming
   },
 
   data() {
@@ -134,7 +134,28 @@ export default {
       } )
        return oP
       }
+    },
+    orderedArchiveByYear: function(){
+      let oP = []
+      let years = []
+      let object
+      if(this.pages.length>0){
+         this.pages.forEach((element) => {
 
+          if(!element. date) return
+            let date = new Date(element.date);
+            let year =  date.getFullYear();
+            if(!years.includes(year)){
+              years.push(year)
+              object= {break : year, special: "break"}
+
+              oP.push(object)
+
+          }
+             oP.push(element)
+      } )
+       return oP
+      }
     }
 
   }
