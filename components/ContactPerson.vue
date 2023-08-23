@@ -21,12 +21,12 @@ export default {
 
 <style lang="sass">
 
-summary span 
+.contact-person summary span 
   border-bottom: 2px solid #B998FF
 
 .contact-person summary 
   font-size: 20px
-  padding: 8px 0
+  padding: 0px 0
 
 summary span:hover
   border-bottom: 2px solid #B998FF

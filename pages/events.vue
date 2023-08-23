@@ -88,7 +88,6 @@ export default {
       let oP = []
       if(this.currentevents.length>0){
          this.currentevents.forEach((element) => {
-         console.log(element)
           if(element.category == "LectureSeries" || element.series == null){
             oP.push(element)
             let seriesTitle = element.slug

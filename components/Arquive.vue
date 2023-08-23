@@ -73,7 +73,6 @@ export default {
 
   methods: {
     toggleClass(e){
-        console.log(e.target)
         let classname = this.removeWhite(e.target.innerText)
         let els = document.getElementsByClassName(classname)
         e.target.parentNode.classList.toggle("open");   

@@ -26,15 +26,21 @@ export default {
 details 
     padding-bottom: 5px
     
-summary 
+summary  
+    font-family: GT-Sectra-Regular
+    text-transform: uppercase
+    line-height: 37px
     font-size: 32px
     cursor: pointer
     padding: 8px 0
+    text-decoration: none
+
 summary span:hover
         border-bottom: 2px solid #B998FF
         color: black
 details[open] span
-    color: white  
+    border-bottom: 2px solid #B998FF
+
 summary::-webkit-details-marker 
   display: none
 
@@ -45,7 +51,7 @@ details .details-content
     font-size: 16px
     line-height: 20px
     padding: 8px 0
-    padding-bottom: 40px
+    padding-bottom: 30px
 
 
 .info 

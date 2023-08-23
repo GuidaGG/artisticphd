@@ -1,7 +1,7 @@
 <template>
    
     <!--<Content :content="subpage" />-->
-    <div >
+    <div ref="programScroll">
     
     <PageContent v-for="(contents, index) in subpage" :key="index" @scroll-element="defineParent">
     
@@ -109,6 +109,10 @@ export default {
       numPages: 0
     };
   },
+  mounted() {
+
+    this.defineParent(this.$refs.programScroll.children[0])
+  },
   methods: {
     defineParent: function(params) {
       this.parent = params
@@ -141,26 +145,32 @@ export default {
   
       var progressbar = document.getElementById("progressbar")
       progressbar.style.background =  "linear-gradient(90deg, rgba(255,255,255,1) -50%, rgba(185,152,255,1) 0%, rgba(255,255,255,1) 50%)"
-
+      this.parent = this.$refs.programScroll.children[0]
       this.$nextTick(function () {
 
         this.$store.state.layout = "en"
       
         this.$root.$emit('Sidebar') 
+        this.$root.$emit('Dots') 
+        this.$root.$emit('Footer_En') 
+
+        var menus = ['program', 'candidates', 'Events', 'Seminars', 'Contact']
+        this.$store.commit('CHANGE_NAV_TITLES', menus)
+        this.$store.commit('CHANGE_EN_TITLES')
+        
         let scrollContainer = this.parent
        
         if(scrollContainer){
          
           scrollContainer.style.scrollSnapType = "none"
           scrollContainer.scrollLeft = 0
-
+  
             setTimeout(function(){
               scrollContainer.style.scrollSnapType = "x mandatory"
             }, 600)
         }
       
-          this.$root.$emit('Footer_En') 
-          this.$store.commit('CHANGE_EN_TITLES')
+          
       })
   },
 }

@@ -10,7 +10,7 @@
             </div>
             <div class="richtext" v-if="contents.__typename === 'ComponentContactContacts'">
                 <div v-for="(contact, index) in contents.People" :key="contact.id">
-                  <span v-if="index === 1">For further information and questions, please contact:</span>
+                  <div v-if="index === 1" class="info" >For further information and questions, please contact:</div>
                   <ul>
                      <li class="contact-name">
                       <ContactPerson v-if="contact.cv" :collapsible="contact" />
@@ -141,11 +141,10 @@ export default {
           var index = Array.prototype.indexOf.call(parent.children, active) 
   
       if(this.$refs.dots){
-        console.log(this.$refs.dots)
         var dots = this.$refs.dots.children;
         var currentdot = this.$refs.dots.getElementsByClassName("current")
         if(currentdot.length>0){
-           console.log(currentdot[0])
+
            currentdot[0].classList.remove("current")
           if(dots.length>0){
             dots[index].classList.add("current")
@@ -273,11 +272,20 @@ export default {
   .block a 
     &:hover
     border-bottom: 2px solid #B998FF
+  
+  .info
+    padding: 20px 0px
   ul 
     list-style: none
-    padding: 20px 0
+    padding: 0px
+    padding-bottom: 20px
 
+    li.contact-name span:first-of-type
+      font-family: GT-Sectra-Regular
+      text-transform: uppercase
+      line-height: 37px
     .contact-name .link
+
       border-bottom: 2px solid #B998FF
       cursor: pointer
       &:hover

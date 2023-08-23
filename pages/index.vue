@@ -52,6 +52,9 @@ export default {
       title: "Artistic-PhD HFK Bremen"
     };
   },
+  mounted() {
+    this.$root.$emit("HideLine")
+  },
   data() {
     return {
       pages:[], //query result

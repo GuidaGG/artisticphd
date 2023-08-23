@@ -33,7 +33,6 @@ export default {
 
             }
             this.$root.$on('Footer_De', () => {
-            
                     let element = this.$refs.langde
                     if(element){
                     this.moveLine(this.$refs.langde)     
@@ -42,7 +41,6 @@ export default {
             
             })
             this.$root.$on('Footer_En', () => {
-                    
                     let element = this.$refs.langen
 
                     if(element){
@@ -114,7 +112,6 @@ export default {
                 }
 
                 VueScrollTo.scrollTo(active, options)
-                console.log(this.$refs)
                 var refen = this.$refs.lang_de
 
              
