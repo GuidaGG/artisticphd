@@ -82,7 +82,6 @@ export default {
        
         for(var i = 0; i<elements.length; i++){
             height += elements[i].offsetHeight
-             console.log(elements[i].offsetHeight)
         }
       
         parent.style.height = height + "px"

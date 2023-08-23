@@ -92,7 +92,6 @@ export default {
                         var w = nav.clientWidth;
                        
                         var h = active[0].offsetHeight+15;
-                        console.log(h)
 
                         var hi = Math.hypot(h, w)
                         var sin = h/hi
@@ -100,7 +99,6 @@ export default {
 
                         var ang = Math.asin(sin) * 180/Math.PI
                         line.style.width =hi + 5 + "px"
-                        console.log(active[0].parentNode.offsetTop)
                         line.style.top = active[0].parentNode.offsetTop + 20 + "px"
                         line.style.transform = "rotate("+ang+"deg)";
                 }
@@ -138,7 +136,6 @@ export default {
                        
                         line.style.top = active[0].parentNode.offsetTop + h/2+ "px"
                          }
-                        console.log(active[0].parentNode.offsetTop)
                        line.style.transform = "rotate("+ang+"deg)";
                 }
             }

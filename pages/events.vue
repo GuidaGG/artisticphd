@@ -88,7 +88,6 @@ export default {
       let oP = []
       if(this.currentevents.length>0){
          this.currentevents.forEach((element) => {
-         console.log(element)
           if(element.category == "LectureSeries" || element.series == null){
             oP.push(element)
             let seriesTitle = element.slug
@@ -113,7 +112,9 @@ export default {
       if(this.pages.length>0){
          this.pages.forEach((element) => {
 
-           let semester =  element.semester.semesterTitle
+          if(!element.semester) return
+           let semester =  element.semester?.semesterTitle
+          
             if(!semesters.includes(semester)){
               semesters.push(semester)
               object= {break : semester, special: "break"}

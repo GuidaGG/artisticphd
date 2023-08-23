@@ -48,14 +48,12 @@ export default {
      this.moveLine()
      this.mobile = this.isMobile();
      this.$root.$on('Header', () => {
-            // your code goes here
             this.moveLine("")
             var line = this.$refs.line
                 setTimeout(function(){line.style.display = "block"}, 100
             )
     })
        this.$root.$on('HeaderNews', () => {
-            // your code goes here
 
             this.moveLine("newsmenu")
             var line = this.$refs.line
@@ -64,7 +62,6 @@ export default {
     })
 
     this.$root.$on('HideLine', () => {
-            // your code goes here
             this.hideLine()
     })
     
@@ -94,8 +91,6 @@ export default {
                 else{
                     active = nav.getElementsByClassName(section)
                 }
-
-                console.log(active)
                     if(active.length>0){
 
                         var h = nav.clientHeight;

@@ -26,7 +26,7 @@ export default {
      }
     },
   beforeCreate: function() {
-    this.$nextTick(function () {
+   /*  this.$nextTick(function () {
     
     var total =  Object.keys(this.pages).length
     console.log(total)
@@ -43,7 +43,7 @@ export default {
         this.$store.commit('CHANGE_DE_TITLES', this.subtitlesDe)
     }
     })
-
+ */
   
   },
     mounted: function(){

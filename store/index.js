@@ -1,9 +1,9 @@
 export const state = () => ({
     layout: 'en',
     menus: ['program', 'candidates', 'Events', 'Seminars', 'Contact'],
-    submenusEn: ['about', 'admissions', 'structure', 'how to finance', 'partners' ],
-    submenusDe: ['about', 'admissions', 'structure', 'how to finance', 'scholarships', 'partners' ],
-    submenus: ['about', 'admissions', 'structure', 'how to finance', 'scholarships', 'partners' ],
+    submenusEn: ['about', 'admissions', 'structure', 'how to finance', 'partners', 'supervisors' ],
+    submenusDe: ['über', 'admissions', 'struktur', 'Externe Finanzhilfen', 'partner', 'betreuer' ],
+    submenus: ['about', 'admissions', 'structure', 'how to finance', 'partners', 'supervisors' ],
     cookies: []
   })
      
@@ -18,11 +18,11 @@ export const state = () => ({
    CHANGE_SUBNAV_TITLES(state, submenus) {
     state.submenus = submenus;
    },
-   CHANGE_DE_TITLES(state, submenusDe) {
-    state.submenusDe = submenusDe;
+   CHANGE_DE_TITLES(state) {
+    state.submenus = state.submenusDe;
    },
-   CHANGE_EN_TITLES(state, submenusEn) {
-    state.submenusEn = submenusEn;
+   CHANGE_EN_TITLES(state) {
+    state.submenus = state.submenusEn;
    },
    ADD(state, slug) {
     state.cookies.push({

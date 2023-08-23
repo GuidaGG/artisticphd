@@ -459,7 +459,8 @@ h1, h2, h3
       margin: 0
       height: calc(100vh - 134px)
       padding-bottom: 80px
-    
+
+
     .program .block
       
       height: calc(100vh - 230px)
@@ -485,6 +486,7 @@ h1, h2, h3
 
     .half-block, .program .half-block, .program .last-block
       display: none
+    
 
     .block.image 
       svg 

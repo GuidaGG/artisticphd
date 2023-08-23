@@ -10,10 +10,10 @@
             </div>
             <div class="richtext" v-if="contents.__typename === 'ComponentContactContacts'">
                 <div v-for="(contact, index) in contents.People" :key="contact.id">
-                  <span v-if="index === 1">For further information and questions, please contact:</span>
+                  <div v-if="index === 1" class="info" >For further information and questions, please contact:</div>
                   <ul>
                      <li class="contact-name">
-                      <span v-if="contact.cv" class="link" v-on:click="showCV($event, contact.cv, 'en')">{{contact.name}}</span>
+                      <ContactPerson v-if="contact.cv" :collapsible="contact" />
                       <span v-else>{{contact.name}}</span> 
                     </li>
                     <li>{{contact.role}}</li>
@@ -25,42 +25,39 @@
             </div>
         </div>
       </div>
-      <div v-if="cvEnVisible" id="cv-en" class="en block right richtext" v-on:click="scroll"></div>
-      <div v-if="pages.pageZoneDe.length" class="en block image" v-on:click="scroll "> 
+      <div v-if="pagesDe" class="en block image"  v-on:click="scroll "> 
          <div class="layer"></div>
          <BackgroundProgram />
       </div>
-      <div v-on:click="scroll" class="de block first" v-if="pages.pageZoneDe.length" >
+      <div v-on:click="scroll" class="de block first" v-if="pagesDe" >
         <div v-for="(contents) in pages.pageZoneDe" :key="contents.id">
           <div class="richtext" v-if="contents.__typename === 'ComponentLayoutsTextBlock'">
               <Richtext :zone="contents.richText" />
             </div>
               <div class="richtext" v-if="contents.__typename === 'ComponentContactContacts'">
                 <div v-for="contact in contents.People" :key="contact.id">
-                  <ul>
-                    <li class="contact-name">
-                      <span v-if="contact.cv" class="link" v-on:click="showCV($event, contact.cv, 'de')">{{contact.name}}</span>
+                <ul>
+                  <li class="contact-name">
+                      <ContactPerson v-if="contact.cv" :collapsible="contact" />
                       <span v-else>{{contact.name}}</span> 
                     </li>
                     <li>{{contact.role}}</li>
                     <li>{{contact.description}}</li>
                     <li>Email: <a :href="`mailto:${contact.email}`">{{contact.email}}</a></li>
                     <li>{{contact.phone}}</li>
-                    </ul>
+                  </ul>
+
               </div>
             </div>
         </div>
       </div>
- 
-      <div v-if="cvDeVisible && pages.pageZoneDe.length" id="cv-de" class="en block right richtext" v-on:click="scroll"></div>
-      <div class="block half-block image"> 
+      <div class="image block half-block last-block"> 
         <div class="layer"></div>
         <BackgroundProgram />
       </div>
-        <div ref="dots" v-on:click="scrolldots" class="dot-navigation">
-          <div class="dot" v-for="(p, index) in getListPages" :key="index" :class="{'current': index === 0}"></div>
-        </div>
-
+      <div ref="dots" v-on:click="scrolldots" class="dot-navigation">
+        <div class="dot" v-for="(p, index) in getListPages" :key="index" :class="{'current': index === 0}"></div>
+       </div>
     </div>
   </with-footer>
 </template>
@@ -70,11 +67,13 @@ import Richtext from '~/components/Richtext.vue';
 import { ContactQuery } from "~/graphql/queries/content"
 import WithFooter from '~/layouts/WithFooter.vue';
 import BackgroundProgram from '~/components/BackgroundProgram.vue';
+import ContactPerson from '~/components/ContactPerson.vue';
 export default {
   components: {
     WithFooter,
     Richtext,
-    BackgroundProgram
+    BackgroundProgram,
+    ContactPerson
   },
   data() {
     return {
@@ -83,7 +82,8 @@ export default {
       numPages: [],
       totalPages: 1,
       cvEnVisible: false,
-      cvDeVisible: false
+      cvDeVisible: false,
+      pagesDe: false
     };
   },
   head() {
@@ -110,8 +110,11 @@ export default {
   
     this.$nextTick(function () {
       this.$root.$emit('Header') //like this
-       if(this.pages.pageZoneDe.length){
-          this.totalPages = 3
+       if(this.pages.pageZoneDe){
+          if(this.pages.pageZoneDe.length){
+            this.totalPages = 3
+            this.pagesDe = true
+          }
         }
     });
   },
@@ -122,28 +125,6 @@ export default {
       } else {
         return false
       }
-    },
-    showCV: function (e, cv, lang ){
-      if(lang === "en"){
-        if(!this.cvEnVisible){
-              this.totalPages += 1
-              this.cvEnVisible = true
-          }
-
-      }
-      else{
-         if(!this.cvDeVisible){
-              this.totalPages += 1
-              this.cvDeVisible = true
-          }
-      }
-      
-      e.stopPropagation()  
-      this.$nextTick(function () {
-        const cvContainer = document.getElementById(`cv-${lang}`)
-        cvContainer.innerHTML = cv
-      });
-    
     },
     scrolldots: function(event){
   
@@ -160,11 +141,10 @@ export default {
           var index = Array.prototype.indexOf.call(parent.children, active) 
   
       if(this.$refs.dots){
-
         var dots = this.$refs.dots.children;
         var currentdot = this.$refs.dots.getElementsByClassName("current")
         if(currentdot.length>0){
-           console.log(currentdot[0])
+
            currentdot[0].classList.remove("current")
           if(dots.length>0){
             dots[index].classList.add("current")
@@ -289,11 +269,23 @@ export default {
   .block:first-child
     margin-left: 25%
 
+  .block a 
+    &:hover
+    border-bottom: 2px solid #B998FF
+  
+  .info
+    padding: 20px 0px
   ul 
     list-style: none
-    padding: 20px 0
+    padding: 0px
+    padding-bottom: 20px
 
+    li.contact-name span:first-of-type
+      font-family: GT-Sectra-Regular
+      text-transform: uppercase
+      line-height: 37px
     .contact-name .link
+
       border-bottom: 2px solid #B998FF
       cursor: pointer
       &:hover
@@ -315,7 +307,6 @@ export default {
       height: 100%
       width: 100%
       background: transparent
-
 
 .dot-navigation
   width:

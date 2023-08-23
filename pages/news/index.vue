@@ -10,14 +10,12 @@
 <script>
 
 import moment from 'moment'
-import Content from "@/components/Content"
 
 import Richtext from '~/components/Richtext.vue';
 export default {
 
   components: {
     Richtext,
-    Content
   },
   data() {
     return {
