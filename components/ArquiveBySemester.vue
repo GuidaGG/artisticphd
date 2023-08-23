@@ -9,7 +9,7 @@
                         <div v-if="event.break" v-on:click="toggleClass" class="semester-title">
                            {{event.break}}
                         </div>
-                        <nuxt-link  v-else :to="{ name: type+'-slug', params: { slug: event.slug }}" :class="['nav__link', getYear(event.date)]" >
+                        <nuxt-link  v-else :to="{ name: type+'-slug', params: { slug: event.slug }}" :class="['nav__link', removeWhite(event.semester.semesterTitle)]" >
                             
                             <div class="wrapper">
                            
@@ -70,20 +70,20 @@ export default {
         this.hideLine()
     })
   },
+
   methods: {
     toggleClass(e){
-        let classname = e.target.innerText
+        let classname = this.removeWhite(e.target.innerText)
         let els = document.getElementsByClassName(classname)
         e.target.parentNode.classList.toggle("open");   
         Array.prototype.forEach.call(els, function(el) {
             el.parentNode.classList.toggle("show");
         });
     },
-    getYear(text){
-        let date = new Date(text);
-        let year = date.getFullYear();
+    removeWhite(text){
+        return text.replace(/ /g,'')
+        
 
-        return year.toString()
     },
     //computate datimes for display
     //time/start time
@@ -185,186 +185,3 @@ export default {
 };
 </script>
 
-<style lang="sass">
-    .sidebar-events
-        a
-            font-size: 1em
-    .archive-section
-        position: fixed
-        z-index: 10
-        top: 104.5px
-        width: 25%
-        font-size: 16px
-        line-height: 22px
-        background: black
-        padding: 10px
-        border-bottom: black 2px solid
-        border-top: solid 2px #5E5E5E
-        height: 40px
-    a
-        line-height: unset
-        font-size: 1em
-
-
-    .archive-section.bottom
-        background: #5E5E5E
-      
-        font-size: 1em
-        text-transform: uppercase
-        padding: 17px
-        height: unset
-        cursor: pointer
-        top: unset
-        bottom: 0
-        left: 0
-        vertical-align: middle
-
-
-    .archive-section.bottom:hover, .archive-section.bottom.active
-        background: black
-        color: white
-    .archive-section:hover
-        color: white
-    .sidebar.left
-        top: 104px
-        padding-top: 39px
-        left: 0
-        z-index: 2
-
-        .link-parent
-            padding-left: 10%
-            padding-right: 10%
-            text-align: left
-
-
-    .date-arquive
-        font-size: 0.7em
-        display: block
-        line-height: 1.2em
-        font-weight: lighter
-        padding-top: 20px
-
-
-    .title-arquive
-        font-family: "GT-Sectra-Regular"
-        line-height: 1.2em
-
-    .subtitle-arquive
-        font-family: "GT-Sectra-Regular"
-        text-transform: none
-        padding-bottom: 30px
-        font-size: 0.8em
-        line-height: 1em
-        padding-bottom: 20px
-
-    .link-parent
-        position: relative
-        
-
-    a::after
-        position: absolute
-        display: none
-        content: ''
-        width: calc(100% + 4px)
-        height: 2px
-        background: black
-        transform: rotate(8deg)
-        top: 0px
-        left: -2px
-    
-    .link-parent .crossout
-        display: none
-        width: 10px
-        position: absolute
-        display: block
-        height: 2px
-        background: black
-        right: -15px
-
-    .link-parent.childLecture
-        .wrapper
-            
-            border-left: 2px solid black
-            padding-left: 10%
-
-    .link-parent.break
-        padding: 0 !important
-
-        .semester-title
-            width: 100%
-            margin-top: 1px
-            padding: 10px
-            font-size: 0.7em
-            line-height: 22px
-            border-collapse: collapse
-            width: 100%
-
-            &::after
-                content: "→"
-                display: inline-block
-                transform: rotate(90deg)
-                float: right
-                font-size: 1.5em
-        
-   
-    
-    .link-parent.break.open
-        border-bottom: 2px solid black
-        .semester-title
-            &::after
-                transform: rotate(-90deg)
-            
-    div.left
-        a.nuxt-link-active::after
-            display: none
-        a.nuxt-link-active .crossout
-            display: block !important
-
-        .line-vertical
-            display: none
-            width: 416.846px
-            top: 115px
-            left: -20px
-            //transform: rotate(20.1275deg)
-
-        .archive-section
-            //top: 102.5px
-
-    .sidebar.right
-        padding-top: 39px
-        right: 0
-        top: 104px
-        scrollbar-width: none
-        z-index: 1
-        border-bottom: none
-
-        .archive-section
-            background: black
-            border-top: 2px solid black
-      
-        .link-parent
-            display: none
-            padding-left: 10%
-            text-align: left
-            padding-right: 10%
-            border-bottom: 2px solid black
-
-        .break 
-            display: block
-            border-bottom: 2px solid black
-        .line-vertical
-            display: none
-            left: -20px
-            top: 130px
-            transform: rotate(23.4876deg)
-
-        .link-parent.show
-            display: block
-    .noevents
-        padding-top: 10px
-        padding-bottom: 10px
-
-    @media only screen and (max-width: 500px)
-        .link-parent.break .semester-title
-            font-size: 1em
-</style>
