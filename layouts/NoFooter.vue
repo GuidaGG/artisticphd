@@ -33,7 +33,7 @@ export default {
   .pageContent
     position: relative
     padding-left: 0
-    overflow: unset
+    overflow: visible
     width: 50%
     margin: 0 auto
     

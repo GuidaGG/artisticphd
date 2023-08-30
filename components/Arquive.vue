@@ -199,7 +199,7 @@ export default {
         background: black
         padding: 10px
         border-bottom: black 2px solid
-        border-top: solid 2px #5E5E5E
+        border-top: solid 2px black
         height: 40px
     a
         line-height: unset
@@ -208,7 +208,7 @@ export default {
 
     .archive-section.bottom
         background: #5E5E5E
-      
+        
         font-size: 1em
         text-transform: uppercase
         padding: 17px
@@ -331,7 +331,7 @@ export default {
             //top: 102.5px
 
     .sidebar.right
-        padding-top: 39px
+        padding-top: 40px
         right: 0
         top: 104px
         scrollbar-width: none

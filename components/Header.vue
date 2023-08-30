@@ -11,8 +11,7 @@
                 <nav ref="nav" class="nav-header">
                     <nuxt-link :to="{ name: 'program-slug', params: { slug: subslug }}" class="nav__link" >{{menu[0]}}</nuxt-link>
                     <nuxt-link class="nav__link" to="/candidates">{{menu[1]}}</nuxt-link>
-                    <nuxt-link class="nav__link newsmenu"  v-if="currentevents[0] && !mobile" :to="{ name: 'events-slug', params: { slug: currentevents[0].slug }}">{{menu[2]}}</nuxt-link>
-                    <nuxt-link class="nav__link newsmenu"  v-else :to="{ name: 'events'}">{{menu[2]}}</nuxt-link>
+                    <nuxt-link class="nav__link newsmenu"  to="/events">{{menu[2]}}</nuxt-link>
                     <nuxt-link v-if="currentseminars[0]  && !mobile" class="nav__link newsmenu"  :to="{ name: 'seminars-slug', params: { slug: currentseminars[0].slug }}">{{menu[3]}}</nuxt-link>
                     <nuxt-link v-else class="nav__link newsmenu"  :to="{ name: 'seminars'}">{{menu[3]}}</nuxt-link>
                     <nuxt-link class="nav__link" to="/contact">{{menu[4]}}</nuxt-link>

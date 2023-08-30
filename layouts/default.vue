@@ -86,7 +86,7 @@ h1, h2, h3
   height: calc(100vh - 106px)
 
 
-.overflow::-webkit-scrollbar 
+.overflow-x::-webkit-scrollbar , .overflow::-webkit-scrollbar 
     width: 0 !important
     height: 0 !important
 
@@ -96,6 +96,15 @@ h1, h2, h3
   -webkit-overflow-scrolling: touch
   scrollbar-width: none  
 
+.overflow-x
+  overflow-x: scroll
+  overflow-y: hidden
+  -webkit-overflow-scrolling: touch
+  scrollbar-width: none  
+
+.uppercase 
+  text-transform: uppercase
+  
 .padding  
   padding: 0 10px  
        
