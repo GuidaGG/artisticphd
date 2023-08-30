@@ -424,6 +424,29 @@ query News {
 }
 `
 
+export const FeaturedEvents = gql`
+query Events($category: String!) {
+  events: news(where: {featured_eq: true, category_eq: $category },  sort: "date:DESC") {
+    title
+    id
+    subtitle
+    endTime
+    category
+    date
+    endDate
+    slug
+    showDate
+    extra
+    featured
+    featuredImage{
+      url
+    }
+    semester{
+      semesterTitle
+    }
+  }
+}
+`
 export const SeminarsQuery = gql`
 query News($date: String!) {
   pages: seminars(where: {endDate_lt: $date },  sort: "date:DESC") {
