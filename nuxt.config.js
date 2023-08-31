@@ -46,18 +46,23 @@ export default {
       ['vue-scrollto/nuxt', { duration: 300, x: true, y: false, container: '#pageContent' }],
       'nuxt-password-protect',
     ],
+
     passwordProtect: {
-       formPath: '/password',
-       password: 'hellopass',
-       tokenSeed: 3343490,
-       queryString: '_pw',
-       cookieName: '_password'
+
+      formPath: '/password',
+      password: 'staging!AREA',
+      tokenSeed: 101010,
+      queryString: '_pw',
+      cookieName: '_password'
      },
     //Apollo
     apollo: {
       clientConfigs: {
         default: '@/graphql/config/config.js'
       }
+    },
+    router: {
+      middleware: ['password-protect']
     },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
