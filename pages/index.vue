@@ -1,7 +1,13 @@
 <template>
     <with-footer class="home">
-      <client-only>
-
+        <div class="latest-events">
+          <h3><nuxt-link to="/events">OUR LATEST EVENTS</nuxt-link></h3>
+          <nav>
+            <nuxt-link v-for="(cat, index) in categories" :to="{ name: 'events-categories-category', params: { category: cat }}" v-bind:key="index">
+                    {{ cat }}s
+                </nuxt-link> 
+          </nav>
+        </div>
         <PageContent @scroll-element="defineParent" class="home">
           
           <Block class="half-block image" :scrollElement="parent"> <Background /></Block>
@@ -23,8 +29,6 @@
           <Block class="block half-block image" :scrollElement="parent"  last="true"> <Background /></Block>
         </PageContent>    
         <Dots :totalPages="getListPages" :scrollElement="parent"/>
-        
-    </client-only>
   </with-footer>
 </template>
 
@@ -63,7 +67,8 @@ export default {
       timer: 0,
       clickable: true,
       numPages: 0,
-      parent: ""
+      parent: "",
+      categories: ["Exhibition", "Lecture", "Workshop", "Symposium"]
     };
   },
   apollo: {
@@ -96,6 +101,30 @@ export default {
 </script>
 
 <style lang="sass">
+.latest-events
+  position: fixed
+  top: 25%
+  left: 12%
+  transform: translateX(-50%)
+  z-index: 10
+  background: #5E5E5E
+  padding: 20px
+  border: 2px solid black
+  h3 
+    font-size: 0.8em
+    padding-bottom: 10px
+  nav 
+    display: flex
+    flex-direction: column
+    padding: 0
+    margin: 0
+    width: unset
+    font-size: 1.4em
+    line-height: 1.4em
+    font-family: GT-Sectra-Regular
+    a
+      text-transform: uppercase
+
 .pageContent
     display: flex
     flex-wrap: nowrap
@@ -230,4 +259,10 @@ export default {
 
   .dot:hover, .dot.current
     background: #B998FF
+
+@media only screen and (max-width: 769px)
+  .latest-events
+    display: none
+
+
 </style>

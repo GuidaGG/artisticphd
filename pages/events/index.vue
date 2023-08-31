@@ -1,6 +1,6 @@
 <template>
     <div class="featured-events fullheight galleries">
-      <h2 class="featured-title padding"> Featured </h2>
+      <h2 class="featured-title padding">Latest Events</h2>
       <FeaturedByCategory category="Exhibition"/>
       <FeaturedByCategory category="Lecture"/>
       <FeaturedByCategory category="Workshop"/>
