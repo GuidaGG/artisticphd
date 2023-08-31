@@ -1,7 +1,6 @@
 <template>
    <client-only>
     <div class="pageContent">
-
       <div v-for="sub in subpage" :key="sub.id" class='event-container fullheight' v-on:scroll="progressBar">
         <div class="archive-section mobile"> <nuxt-link to="/events" class="nav__link" >← All Events</nuxt-link></div>
         <div class="event-date padding">
