@@ -1,6 +1,6 @@
 <template>
     <div class="featured-events fullheight list">
-        <h2 class="featured-title padding"> Featured </h2>
+        <h2 class="featured-title padding">Latest Events</h2>
       <FeaturedByCategory :category="category" view="list"/>
     </div>
 </template>
