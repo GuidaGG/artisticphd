@@ -6,6 +6,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      //remove on production
+      { name: 'robots', content: 'noindex'},
+      { name: 'AdsBot-Google', content: 'noindex'},
       { hid: 'og:image', property: 'og:image', content: "/image.png" },
       { hid: 'og:title', property: 'og:title', content: "Artistic PhD HFk Bremen" },
       { hid: 'og:url', property: 'og:url', content: "https://artisticphd-hfkbremen.net/" },
