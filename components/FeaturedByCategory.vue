@@ -1,14 +1,19 @@
 <template>
-      <div v-if="events.length" class="featured-category overflow-x">
+      <div  class="featured-category overflow-x" :class="view">
         <div class="category-header">
-            <nuxt-link :to="{ name: 'events-category', params: { category: category }}" class="nav__link" >
-                <h3> {{ category }}</h3>
+            <nuxt-link v-if="view != 'list'" :to="{ name: 'events-categories-category', params: { category: category }}" class="nav__link" >
+                <h3> {{ category }}s</h3>
             </nuxt-link>
-            <div class="arrow arrowscroll" v-on:click="scroll">
+            <nav v-else class="category-list padding"> 
+                 <nuxt-link v-for="(cat, index) in categories" :to="{ name: 'events-categories-category', params: { category: cat }}" v-bind:key="index">
+                    {{ cat }}s
+                </nuxt-link> 
+            </nav>
+            <div v-if="view != 'list'" class="arrow arrowscroll" v-on:click="scroll">
                     →
             </div>
         </div>
-        <div class="row overflow-x scroll">
+        <div v-if="events.length" class="row overflow-x scroll">
             <div :class="{'featured-event': true, 'current': index === 0}" v-for="(event, index) in events" :key=event.id>
                <FeaturedEvent :event="event" /> 
             </div>  
@@ -23,13 +28,14 @@ import { FeaturedEvents } from "~/graphql/queries/content"
 import FeaturedEvent from "./FeaturedEvent.vue";
 
 export default {
-    props: ["category"],
+    props: ["category", "view"],
     components: {
         FeaturedEvent
     },
     data() {
         return {
         events:[], //query result
+        categories: ["Exhibition", "Lecture", "Workshop", "Symposium"]
         };
         },
         apollo: {
@@ -88,10 +94,9 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" >
 .featured-category 
     width: 100%
-    border-bottom: 2px solid black
     .row 
         display: flex
         min-height: 200px
@@ -99,28 +104,66 @@ export default {
         height: 35vh
         width: 100%
         scroll-snap-align: start
+        border-bottom: 2px solid black   
         .spacer
             width: 55%
             flex: 0 0 auto
     .category-header
         top: 0
-        height: 39px
         padding: 0px 10px
         border-bottom: 2px solid black   
         display: flex 
         justify-content: space-between
+        flex-wrap: nowrap
         h3
             font-size: 16px
             line-height: 39px
         .arrow 
             line-height: 39px
+            font-size: 24px
             cursor: pointer
 
+    .category-list
+        width: 100%
+        list-style: none
+        display: flex 
+        flex-wrap: wrap
+        justify-content: space-between
+        margin: 0
+        line-height: 39px 
+        font-size: 0.8em
+        height: auto
+        a
+            text-transform: uppercase
+            font-size: 
+    
 
     .featured-event
         width: 45%
         flex: 0 0 auto
         position: relative
+        
+
+        a 
+            color: white
+        img
+            width: 100%
+            min-height: 200px
+            max-height: 400px
+            height: 35vh
+            object-fit: cover
+        .hover
+            display: none
+            top: 0px
+            padding: 0 10px
+            position: absolute
+            z-index: 1
+
+        &:hover 
+            .hover 
+                display: block
+            img 
+                filter: brightness(10%)
 
     
 @media only screen and (max-width: 1200px)
@@ -131,8 +174,60 @@ export default {
 
 @media only screen and (max-width: 769px)
     .featured-category 
-        
         .featured-event
             width: 85%
+
+            .hover
+                display: block
+            img 
+                filter: brightness(50%)
+
+@media only screen and (max-width: 500px)
+    .featured-category 
+        font-size: 12px
+        background: #5E5E5E
+
+    
+.list
+
+    .category-header
+        padding: 0
+    
+
+    .row
+        flex-wrap: wrap
+        height: auto
+        min-height: unset
+        max-height: unset
+        border-bottom: none
+        gap: 0
+        .featured-event
+            width: 100%
+            border-bottom: 2px solid black
+
+            a
+                display: flex
+                font-size: 1em
+
+            img
+                width: 45%
+                flex-shrink: 0
+
+            .hover 
+                display: block
+                position: relative
+            
+            &:hover 
+                img 
+                    filter: none
+        
+@media only screen and (max-width: 769px)
+    .list.featured-category
+        .row
+            margin-top: 0
+            
+            .featured-event
+                img 
+                    display: none
 
 </style>

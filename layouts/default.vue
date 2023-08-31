@@ -806,12 +806,12 @@ h1, h2, h3
       font-size: 18px
       line-height: 22px
 
-    .sidebar
+    .sidebar, 
       
       padding: 7px 10px
       font-size: 12px
       top: 78px
-     
+    
     .block, .block:first-child
       width: 100%
       margin: 0

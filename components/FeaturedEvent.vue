@@ -60,35 +60,3 @@ data() {
 }
 </script>
 
-<style lang="sass">
-.featured-event
-    a 
-      color: white
-    img
-        width: 100%
-        min-height: 200px
-        max-height: 400px
-        height: 35vh
-        object-fit: cover
-    .hover
-        display: none
-        top: 0px
-        padding: 0 20px
-        position: absolute
-        z-index: 1
-
-    &:hover 
-        cursor: pointer
-        .hover 
-            display: block
-        img 
-            filter: brightness(10%)
-
-@media only screen and (max-width: 769px)
-  .featured-event
-      .hover
-        display: block
-      img 
-        filter: brightness(50%)
-                
-</style>
