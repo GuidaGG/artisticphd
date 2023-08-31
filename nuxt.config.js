@@ -6,6 +6,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      //remove on production
+      { name: 'robots', content: 'noindex'},
+      { name: 'AdsBot-Google', content: 'noindex'},
       { hid: 'og:image', property: 'og:image', content: "/image.png" },
       { hid: 'og:title', property: 'og:title', content: "Artistic PhD HFk Bremen" },
       { hid: 'og:url', property: 'og:url', content: "https://artisticphd-hfkbremen.net/" },
@@ -46,18 +49,23 @@ export default {
       ['vue-scrollto/nuxt', { duration: 300, x: true, y: false, container: '#pageContent' }],
       'nuxt-password-protect',
     ],
+
     passwordProtect: {
-       formPath: '/password',
-       password: 'hellopass',
-       tokenSeed: 3343490,
-       queryString: '_pw',
-       cookieName: '_password'
+
+      formPath: '/password',
+      password: 'staging!AREA',
+      tokenSeed: 101010,
+      queryString: '_pw',
+      cookieName: '_password'
      },
     //Apollo
     apollo: {
       clientConfigs: {
         default: '@/graphql/config/config.js'
       }
+    },
+    router: {
+      middleware: ['password-protect']
     },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
