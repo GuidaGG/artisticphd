@@ -13,7 +13,7 @@
                     →
             </div>
         </div>
-        <div v-if="events.length" class="row overflow-x scroll">
+        <div ref="scroll" v-if="events.length" class="row overflow-x scroll">
             <div :class="{'featured-event': true, 'current': index === 0}" v-for="(event, index) in events" :key=event.id>
                <FeaturedEvent :event="event" /> 
             </div>  
@@ -54,6 +54,7 @@ export default {
                 var VueScrollTo = require('vue-scrollto');
                 var parent = event.target.parentNode.nextElementSibling
                 var active = parent.getElementsByClassName("current")
+                parent.style.scrollSnapType = "none"
 
                 var options = {
                     container: parent,
@@ -83,10 +84,12 @@ export default {
                         var elements = parent.children
                         VueScrollTo.scrollTo(elements[0], options)
                         elements[0].classList.add("current")
-
-
                     }
                 }
+
+                setTimeout(function(){
+                    parent.style.scrollSnapType = "x mandatory"}
+                , 600)
      
             }
         }
@@ -102,8 +105,10 @@ export default {
         min-height: 200px
         max-height: 400px
         height: 35vh
-        width: 100%
-        scroll-snap-align: start
+
+        flex-flow: row nowrap
+        overflow-x: scroll
+        scroll-snap-type: x mandatory
         border-bottom: 2px solid black   
         .spacer
             width: 55%
@@ -142,7 +147,7 @@ export default {
         width: 45%
         flex: 0 0 auto
         position: relative
-        
+        scroll-snap-align: start
 
         a 
             color: white
@@ -174,6 +179,8 @@ export default {
 
 @media only screen and (max-width: 769px)
     .featured-category 
+        a 
+            font-size: 1.2em
         .featured-event
             width: 85%
 
