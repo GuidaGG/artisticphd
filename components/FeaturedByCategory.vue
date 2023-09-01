@@ -125,6 +125,7 @@ export default {
         flex: 0 0 auto
         position: relative
         scroll-snap-align: start
+        box-sizing: content-box
         a 
             color: white
 
@@ -192,13 +193,13 @@ export default {
             height: 35vh
             max-height: 220px
             border-bottom: 2px solid black
-            box-sizing: content-box
+            
             a 
                 display: flex
                 align-items: stretch
                
             .image-container 
-                width: 40%
+                width: 45%
                 height: 35vh
                 max-height: 220px
                 flex: 0 0 auto
@@ -210,11 +211,19 @@ export default {
                 width: 100%
                 display: block
                 position: relative
+            &:hover 
+                img 
+                    filter: none
 
 @media only screen and (max-width: 769px)  
     .list
         .row
             margin-top: 0px   
+            .featured-event  
+                .image-container 
+                    width: 35%
+                img 
+                    filter: none
 
         .category-header
             border: none
@@ -224,6 +233,8 @@ export default {
         .row
             .featured-event 
                 height: 22vh
+                min-height: 180px
                 .image-container 
                     height: 22vh
+                    min-height: 180px
 </style>
