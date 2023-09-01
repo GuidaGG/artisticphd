@@ -204,6 +204,7 @@ export default {
     a
         line-height: unset
         font-size: 1em
+      
 
 
     .archive-section.bottom
@@ -230,7 +231,10 @@ export default {
         padding-top: 39px
         left: 0
         z-index: 2
-
+        cursor: unset
+        
+        div.archive-section
+            cursor: unset
         .link-parent
             padding-left: 10%
             padding-right: 10%
@@ -337,11 +341,14 @@ export default {
         scrollbar-width: none
         z-index: 1
         border-bottom: none
+        cursor: unset
 
         .archive-section
             background: black
             border-top: 2px solid black
-      
+     
+        div.archive-section
+            cursor: unset    
         .link-parent
             display: none
             padding-left: 10%
