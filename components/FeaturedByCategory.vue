@@ -4,11 +4,6 @@
             <nuxt-link v-if="view != 'list'" :to="{ name: 'events-categories-category', params: { category: category }}" class="nav__link" >
                 <h3> {{ category }}s</h3>
             </nuxt-link>
-            <nav v-else class="category-list padding"> 
-                 <nuxt-link v-for="(cat, index) in categories" :to="{ name: 'events-categories-category', params: { category: cat }}" v-bind:key="index">
-                    {{ cat }}s
-                </nuxt-link> 
-            </nav>
             <div v-if="view != 'list'" class="arrow arrowscroll" v-on:click="scroll">
                     →
             </div>
@@ -35,7 +30,6 @@ export default {
     data() {
         return {
         events:[], //query result
-        categories: ["Exhibition", "Lecture", "Workshop", "Symposium"]
         };
         },
         apollo: {
@@ -102,10 +96,8 @@ export default {
     width: 100%
     .row 
         display: flex
-        min-height: 200px
-        max-height: 400px
         height: 35vh
-
+        max-height: 220px
         flex-flow: row nowrap
         overflow-x: scroll
         scroll-snap-type: x mandatory
@@ -116,10 +108,10 @@ export default {
     .category-header
         top: 0
         padding: 0px 10px
-        border-bottom: 2px solid black   
         display: flex 
         justify-content: space-between
         flex-wrap: nowrap
+        border-bottom: 2px solid black
         h3
             font-size: 16px
             line-height: 39px
@@ -128,35 +120,21 @@ export default {
             font-size: 24px
             cursor: pointer
 
-    .category-list
-        width: 100%
-        list-style: none
-        display: flex 
-        flex-wrap: wrap
-        justify-content: space-between
-        margin: 0
-        line-height: 39px 
-        font-size: 0.8em
-        height: auto
-        a
-            text-transform: uppercase
-            font-size: 
-    
-
     .featured-event
         width: 45%
         flex: 0 0 auto
         position: relative
         scroll-snap-align: start
-
         a 
             color: white
+
+        .image-container 
+            width: 100%
+            height: 35vh
         img
             width: 100%
-            min-height: 200px
-            max-height: 400px
-            height: 35vh
-            object-fit: cover
+            height: 100%
+            object-fit: cover       
         .hover
             display: none
             top: 0px
@@ -173,16 +151,20 @@ export default {
     
 @media only screen and (max-width: 1200px)
     .featured-category 
-        
+
         .featured-event
             width: 65%
 
 @media only screen and (max-width: 769px)
     .featured-category 
         a 
-            font-size: 1.2em
+            
         .featured-event
             width: 85%
+
+            .date-arquive
+                font-size: 14px
+                line-height: 18px
 
             .hover
                 display: block
@@ -194,47 +176,54 @@ export default {
         font-size: 12px
         background: #5E5E5E
 
-    
+       
+
 .list
-
-    .category-header
-        padding: 0
-    
-
-    .row
-        flex-wrap: wrap
-        height: auto
+   .row
+        margin-top: 39px
+        flex-direction: column
+        height: unset
         min-height: unset
         max-height: unset
         border-bottom: none
-        gap: 0
-        .featured-event
+
+        .featured-event 
             width: 100%
+            height: 35vh
+            max-height: 220px
             border-bottom: 2px solid black
-
-            a
+            box-sizing: content-box
+            a 
                 display: flex
-                font-size: 1em
-
+                align-items: stretch
+               
+            .image-container 
+                width: 40%
+                height: 35vh
+                max-height: 220px
+                flex: 0 0 auto
+                
             img
-                width: 45%
-                flex-shrink: 0
-
+                width: 100%
+                object-fit: cover
             .hover 
+                width: 100%
                 display: block
                 position: relative
-            
-            &:hover 
-                img 
-                    filter: none
-        
-@media only screen and (max-width: 769px)
-    .list.featured-category
-        .row
-            margin-top: 0
-            
-            .featured-event
-                img 
-                    display: none
 
+@media only screen and (max-width: 769px)  
+    .list
+        .row
+            margin-top: 0px   
+
+        .category-header
+            border: none
+
+@media only screen and (max-width: 500px)  
+    .list
+        .row
+            .featured-event 
+                height: 22vh
+                .image-container 
+                    height: 22vh
 </style>

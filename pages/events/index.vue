@@ -1,10 +1,10 @@
 <template>
     <div class="featured-events fullheight galleries">
-      <h2 class="featured-title padding">Latest Events</h2>
+      <h2 class="featured-title padding">Latest Events:</h2>
       <FeaturedByCategory category="Exhibition"/>
       <FeaturedByCategory category="Lecture"/>
       <FeaturedByCategory category="Workshop"/>
-
+      <FeaturedByCategory category="Symposium"/>
     </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
     margin: 0 auto
     overflow-y: scroll
     overflow-x: hidden
-    
+    padding-top: 39px 
 
     &::-webkit-scrollbar 
       width: 0 !important
@@ -46,8 +46,8 @@ export default {
       width: 50%
       z-index: 10
 
-.galleries
-  padding-top: 39px 
+
+  
 @media only screen and (max-width: 769px)
   .featured-events
     width: 100%
