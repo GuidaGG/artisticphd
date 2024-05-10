@@ -9,12 +9,14 @@ export default {
       //remove on production
      /* { name: 'robots', content: 'noindex'},
       { name: 'AdsBot-Google', content: 'noindex'}, */
+      { name: 'robots', content: 'index, follow'},
+      { name: 'AdsBot-Google', content: 'index, follow'}, 
       { hid: 'og:image', property: 'og:image', content: "/image.png" },
       { hid: 'og:title', property: 'og:title', content: "Artistic PhD HFk Bremen" },
       { hid: 'og:url', property: 'og:url', content: "https://artisticphd-hfkbremen.net/" },
       { hid: 'og:description', property: 'og:description', content: "The foundation for the PhD program is the artistic or artistic-creative practice and the resulting research and production of, or gain in, knowledge." },
       { hid: 'description', name: 'description', content: 'The foundation for the PhD program is the artistic or artistic-creative practice and the resulting research and production of, or gain in, knowledge.' },
-      { hid: 'keywords', name: 'keywords', content: 'artistic, phd, bremen, hfk, research, art, andrea sick, künst, hochschule, germany, doctorate, program, deutschland' }
+      { hid: 'keywords', name: 'keywords', content: 'artistic, phd, bremen, hfk, research, art, andrea sick, künst, hochschule, germany, doctorate, program, deutschland' },
 
     ],
     link: [
@@ -67,7 +69,7 @@ export default {
       middleware: ['password-protect']
     },*/
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  target: 'static',
+  // target: 'static',
   build: {
   }
 }
